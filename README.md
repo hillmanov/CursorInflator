@@ -30,8 +30,8 @@ The Column annotation needs only one thing - the name of the column in the datab
 
 Once you have your models setup, all you need is a cursor to inflate. The CursorInflator class has two static methods that you can call:
 
-	*CursorInflator.inflateList
-	*CursorInflator.inflateOne
+*CursorInflator.inflateList
+*CursorInflator.inflateOne
 	
 inflateList and inflateOne both take a cursor as their first first argument, and the class of the object you wish to inflate as the second. 
 
