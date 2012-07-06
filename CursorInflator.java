@@ -1,4 +1,4 @@
-package com.hillman.cyclewhat.inflator;
+package com.hillman.cursorinflator;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
