@@ -4,7 +4,9 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,8 @@ public class CursorInflator {
 			if (c != null) {
 				if (c.moveToFirst()) {
 					do {
-						T current = entityClass.newInstance();
+						Constructor<T> constructor = entityClass.getConstructor();
+						T current = constructor.newInstance();
 						Field[] fields = entityClass.getDeclaredFields();
 						for (Field field : fields) {
 							field.setAccessible(true);
@@ -55,6 +58,12 @@ public class CursorInflator {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
 			e.printStackTrace();
 		} finally {
 			c.close();
